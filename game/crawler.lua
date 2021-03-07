@@ -1,3 +1,17 @@
+function swap(a, i, j)
+  a[i], a[j] = a[j], a[i]
+end
+
+function shuffle(array)
+  local counter = #array
+  while counter > 1 do
+    local index = math.random(counter)
+    swap(array, index, counter)
+    counter = counter - 1
+  end
+  return array
+end
+
 function generate_deck()
   local deck = { 
     "C",  -- joker, from pt-br coringa
@@ -37,7 +51,7 @@ end
 
 function Crawler()
   local self = { }
-  self.deck = generate_deck()
+  self.deck = shuffle(generate_deck())
 
   return self
 end
