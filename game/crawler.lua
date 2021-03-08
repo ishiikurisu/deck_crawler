@@ -52,6 +52,16 @@ end
 function Crawler()
   local self = { }
   self.deck = shuffle(generate_deck())
+  self.discard = { }
+
+  function self:draw()
+    local card = self.deck[1]
+    for i = 2, #self.deck do
+      self.deck[i-1] = self.deck[i]
+    end
+    self.deck[#self.deck] = nil
+    return card
+  end
 
   return self
 end
